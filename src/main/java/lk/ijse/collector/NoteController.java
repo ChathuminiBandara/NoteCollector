@@ -20,7 +20,6 @@ public class NoteController {
 
     public NoteDTO saveNote(@RequestBody NoteDTO noteDTO){
         return noteService.saveNote(noteDTO);
-
        /* var noteServiceIMPL = new NoteServiceIMPL();
         noteDTO.setNoteId(AppUtill.generateNoteId());
         noteServiceIMPL.saveNote(noteDTO);
