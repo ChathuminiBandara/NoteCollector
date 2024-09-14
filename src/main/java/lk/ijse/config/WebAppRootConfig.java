@@ -19,8 +19,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "lk.ijse")
-@EnableTransactionManagement
 @EnableJpaRepositories
+@EnableTransactionManagement
 public class WebAppRootConfig {
 
     //data source eka defined
@@ -31,7 +31,7 @@ public class WebAppRootConfig {
         dmds.setDriverClassName("com.mysql.jdbc.Driver");
         dmds.setUrl("jdbc:mysql://localhost:3306/springNote?createDatabaseIfNotExist=true&useSSL=false");
         dmds.setUsername("root");
-        dmds.setPassword("root");
+        dmds.setPassword("1234");
         return dmds;
     }
 
@@ -44,7 +44,7 @@ public class WebAppRootConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.acme.domain");
+        factory.setPackagesToScan("lk.ijse.entity");  //entity hadala thina thana pennanna
         factory.setDataSource(dataSource());
         return factory;
     }
@@ -58,3 +58,6 @@ public class WebAppRootConfig {
         return txManager;
     }
 }
+
+
+
