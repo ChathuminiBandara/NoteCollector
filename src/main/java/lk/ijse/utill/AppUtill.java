@@ -1,5 +1,6 @@
 package lk.ijse.utill;
 
+import java.util.Base64;
 import java.util.UUID;
 
 public class AppUtill {
@@ -7,4 +8,10 @@ public class AppUtill {
     return  "Note-" + UUID.randomUUID();
 
     }
+
+    public static String generateUserId(){
+        return "User-" + UUID.randomUUID();
+    }
+
+   
 }
