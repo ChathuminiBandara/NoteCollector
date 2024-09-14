@@ -13,5 +13,7 @@ public class AppUtill {
         return "User-" + UUID.randomUUID();
     }
 
-   
+    public static String profilePicToBase64(String profilePic){
+        return Base64.getEncoder().encodeToString(profilePic.getBytes());
+    }
 }
