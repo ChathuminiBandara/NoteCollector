@@ -21,9 +21,9 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = "lk.ijse")
 @EnableJpaRepositories
 @EnableTransactionManagement
-public class WebAppRootConfig {
+public class WebAppRootConfig {  // this is to simplify the dao layer
 
-    //data source eka defined
+    //data source eka defined - bean data source
     @Bean
     public DataSource dataSource() {
         //new data source : add
@@ -35,15 +35,15 @@ public class WebAppRootConfig {
         return dmds;
     }
 
-    //hibernate JPA Implementation
+    //hibernate JPA Implementation - 2nd bean to configure the orm tool  - without any property files
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {  // entity managers in JPA  - this has bootstrapped from this
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setGenerateDdl(true);
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setJpaVendorAdapter(vendorAdapter);    // connecting the required vendor
         factory.setPackagesToScan("lk.ijse.entity");  //entity hadala thina thana pennanna
         factory.setDataSource(dataSource());
         return factory;
@@ -58,6 +58,3 @@ public class WebAppRootConfig {
         return txManager;
     }
 }
-
-
-

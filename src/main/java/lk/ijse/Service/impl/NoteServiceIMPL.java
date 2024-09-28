@@ -1,5 +1,6 @@
-package lk.ijse.Service;
+package lk.ijse.Service.impl;
 
+import lk.ijse.Service.NoteService;
 import lk.ijse.dto.impl.NoteDTO;
 import lk.ijse.utill.AppUtill;
 import org.springframework.stereotype.Service;
@@ -7,8 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class NoteServiceIMPL implements  NoteService {
+@Service // meta annotated from the @Component annotation
+public class NoteServiceIMPL implements NoteService {
     private static List<NoteDTO> noteDTOList = new ArrayList<>();
 
     public NoteServiceIMPL(){

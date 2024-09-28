@@ -22,6 +22,8 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
+    // multipart form data managing -  must give the folder to process
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
             String tempDir = System.getProperty("java.io.tmpdir");

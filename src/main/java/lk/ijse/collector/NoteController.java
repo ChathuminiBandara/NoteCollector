@@ -1,10 +1,7 @@
 package lk.ijse.collector;
 
 import lk.ijse.Service.NoteService;
-import lk.ijse.Service.NoteServiceIMPL;
 import lk.ijse.dto.impl.NoteDTO;
-import lk.ijse.utill.AppUtill;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -45,4 +42,3 @@ public class NoteController {
 }
 
 //controller layer eke endpoints - mewa equal wenawa crud operations walata - all are public
-

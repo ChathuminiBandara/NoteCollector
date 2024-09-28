@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @ComponentScan(basePackages = "lk.ijse")
 @EnableWebMvc
-@MultipartConfig
+@MultipartConfig   // multipart configuration enabling
 public class WebAppConfig {
 }
