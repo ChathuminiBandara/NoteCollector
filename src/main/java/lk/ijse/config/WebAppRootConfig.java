@@ -2,6 +2,7 @@ package lk.ijse.config;
 
 import jakarta.persistence.EntityManagerFactory;
 import lombok.val;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,16 +20,21 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "lk.ijse")
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "lk.ijse.dao")
 @EnableTransactionManagement
 public class WebAppRootConfig {  // this is to simplify the dao layer
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
 
     //data source eka defined - bean data source
     @Bean
     public DataSource dataSource() {
         //new data source : add
         var dmds = new DriverManagerDataSource();
-        dmds.setDriverClassName("com.mysql.jdbc.Driver");
+        dmds.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dmds.setUrl("jdbc:mysql://localhost:3306/springNote?createDatabaseIfNotExist=true&useSSL=false");
         dmds.setUsername("root");
         dmds.setPassword("1234");
