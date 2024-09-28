@@ -27,17 +27,19 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return List.of();
+        List<UserEntity> allUsers =  userDAO.findAll();
+        return mapping.asUserDTOList(allUsers);         // ena userdto tika entity walata convert kragena returning
     }
 
     @Override
     public UserDTO getUser(String userId) {
-        return null;
+        UserEntity selectedUser =  userDAO.getReferenceById(userId);
+        return mapping.toUserDTO(selectedUser);
     }
 
     @Override
-    public boolean deleteUser(String userId) {
-        return false;
+    public void deleteUser(String userId) {
+         userDAO.deleteById(userId);
     }
 
     @Override

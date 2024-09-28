@@ -8,6 +8,6 @@ public interface UserService {
     UserDTO saveUser(UserDTO userDTO);
     List<UserDTO> getAllUsers();
     UserDTO getUser(String userId);
-    boolean deleteUser(String userId);
+    void deleteUser(String userId);
     boolean updateUser(String  userId, UserDTO userDTO);
 }
