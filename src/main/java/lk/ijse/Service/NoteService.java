@@ -1,14 +1,15 @@
 package lk.ijse.Service;
 
+import lk.ijse.dto.NoteStatus;
 import lk.ijse.dto.impl.NoteDTO;
 
 import java.util.List;
 
 public interface NoteService {
-    NoteDTO saveNote(NoteDTO noteDTO);
+    void saveNote(NoteDTO noteDTO);
     List<NoteDTO> getAllNotes();
-    NoteDTO getNoteById(String noteId);
-    boolean deleteNote(String noteId);
-    boolean updateNote(String  noteId, NoteDTO noteDTO);
+    NoteStatus getNoteById(String noteId);
+    void deleteNote(String noteId);
+    void updateNote(String  noteId, NoteDTO noteDTO);
 
 }

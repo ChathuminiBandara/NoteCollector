@@ -1,49 +1,75 @@
 package lk.ijse.Service.impl;
 
 import lk.ijse.Service.NoteService;
+import lk.ijse.customStatusCode.SelectedUserAndNoteErrorStatus;
+import lk.ijse.dao.NoteDAO;
+import lk.ijse.dto.NoteStatus;
 import lk.ijse.dto.impl.NoteDTO;
+import lk.ijse.entity.impl.NoteEntity;
+import lk.ijse.exception.DataPersistException;
+import lk.ijse.exception.NoteNotFoundException;
 import lk.ijse.utill.AppUtill;
+import lk.ijse.utill.Mapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service // meta annotated from the @Component annotation
+@Transactional
 public class NoteServiceIMPL implements NoteService {
-    private static List<NoteDTO> noteDTOList = new ArrayList<>();
+    @Autowired
+    private NoteDAO noteDAO;
 
-    public NoteServiceIMPL(){
-        noteDTOList.add(new NoteDTO("Note-a9f63ca3-6c64-46af-87d0-593ca176eeab", "SampleTitle", "1st description", "2024.09.14", "High", "U001"  ));
-        noteDTOList.add(new NoteDTO("Note-d3dfba6d-5b57-4557-b2b0-5e3aa53d28b4", "SampleTitle", "2nd Description", "2024.09.14", "Low", "U002"  ));
-        noteDTOList.add(new NoteDTO("Note-0444e56d-b9f2-4b10-9d6f-abca7ce032e5", "SampleTitle", "3rd description", "2024.09.14", "High", "U003"  ));
-        noteDTOList.add(new NoteDTO("Note-995dc193-3576-4d58-bd75-f8bfaff637b7", "SampleTitle", "4tht description", "2024.09.14", "Medium", "U004"  ));
-        noteDTOList.add(new NoteDTO("Note-c12097b9-71de-487b-aecb-3837dec76657", "SampleTitle", "5th description", "2024.09.14", "High", "U005"  ));
-    }
+    @Autowired
+    private Mapping noteMapping;
 
     @Override
-    public NoteDTO saveNote(NoteDTO noteDTO) {
+    public void saveNote(NoteDTO noteDTO) {
         noteDTO.setNoteId(AppUtill.generateNoteId());
-        noteDTOList.add(noteDTO);
-        return noteDTO;
+        NoteEntity savedNote = noteDAO.save(noteMapping.toNoteEntity(noteDTO));
+        if(savedNote == null){
+            throw new DataPersistException("Note not saved");
+        }
     }
 
     @Override
     public List<NoteDTO> getAllNotes() {
-        return noteDTOList;
+        return noteMapping.asNoteDTOList( noteDAO.findAll());
     }
 
     @Override
-    public NoteDTO getNoteById(String noteId) {
-        return null;
+    public NoteStatus getNoteById(String noteId) {
+        if(noteDAO.existsById(noteId)){
+            var selectedUser = noteDAO.getReferenceById(noteId);
+            return noteMapping.toNoteDTO(selectedUser);
+        }else {
+            return new SelectedUserAndNoteErrorStatus(2,"Selected note not found");
+        }
     }
 
     @Override
-    public boolean deleteNote(String noteId) {
-        return false;
+    public void deleteNote(String noteId) {
+        Optional<NoteEntity> foundNote = noteDAO.findById(noteId);
+        if (!foundNote.isPresent()) {
+            throw new NoteNotFoundException("Note not found");
+        }else {
+            noteDAO.deleteById(noteId);
+        }
     }
 
     @Override
-    public boolean updateNote(String  noteId ,NoteDTO noteDTO) {
-        return false;
+    public void updateNote(String  noteId , NoteDTO noteDTO) {
+        Optional<NoteEntity> findNote = noteDAO.findById(noteId);
+        if (!findNote.isPresent()) {
+            throw new NoteNotFoundException("Note note found");
+        } else {
+            findNote.get().setNoteTitle(noteDTO.getNoteTitle());
+            findNote.get().setCreateDate(noteDTO.getCreateDate());
+            findNote.get().setNoteDescription(noteDTO.getNoteDescription());
+            findNote.get().setPriorityLevel(noteDTO.getPriorityLevel());
+        }
     }
 }
