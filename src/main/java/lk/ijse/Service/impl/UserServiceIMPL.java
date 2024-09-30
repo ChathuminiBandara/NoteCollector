@@ -2,14 +2,19 @@ package lk.ijse.Service.impl;
 
 import jakarta.transaction.Transactional;
 import lk.ijse.Service.UserService;
+import lk.ijse.customStatusCode.SelectedUserAndNoteErrorStatus;
 import lk.ijse.dao.UserDAO;
+import lk.ijse.dto.UserStatus;
 import lk.ijse.dto.impl.UserDTO;
 import lk.ijse.entity.impl.UserEntity;
+import lk.ijse.exception.UserNotFoundException;
 import lk.ijse.utill.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service    // meta annotated from the @Component annotation
 @Transactional
@@ -20,9 +25,11 @@ public class UserServiceIMPL implements UserService {
     private Mapping mapping;
 
     @Override
-    public UserDTO saveUser(UserDTO userDTO) {
+    public void saveUser(UserDTO userDTO) {
        UserEntity saveUser =  userDAO.save(mapping.toUserEntity(userDTO));
-       return mapping.toUserDTO(saveUser);
+       if(saveUser == null){
+           throw new DataIntegrityViolationException("User already exists");
+       }
     }
 
     @Override
@@ -32,18 +39,35 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
-    public UserDTO getUser(String userId) {
-        UserEntity selectedUser =  userDAO.getReferenceById(userId);
-        return mapping.toUserDTO(selectedUser);
+    public UserStatus getUser(String userId) {
+        if(userDAO.existsById(userId)){
+            UserEntity selectedUser = userDAO.getReferenceById(userId);
+            return mapping.toUserDTO(selectedUser);
+        }else {
+            return new SelectedUserAndNoteErrorStatus(2, "User with id " + userId + " not found");
+        }
     }
+
 
     @Override
     public void deleteUser(String userId) {
-         userDAO.deleteById(userId);
+          Optional<UserEntity> existUser =  userDAO.findById(userId);
+          if(!existUser.isPresent()){
+              throw new UserNotFoundException( "User with id " + userId + " not found");
+          }else {
+              userDAO.deleteById(userId);
+          }
     }
 
     @Override
-    public boolean updateUser(String userId, UserDTO userDTO) {
-        return false;
+    public void updateUser(String userId, UserDTO userDTO) {
+       Optional<UserEntity> tempUser = userDAO.findById(userId);
+       if(tempUser.isPresent()) {
+           tempUser.get().setFirstName(userDTO.getFirstName());
+           tempUser.get().setLastName(userDTO.getLastName());
+           tempUser.get().setEmail(userDTO.getEmail());
+           tempUser.get().setProfilePic(userDTO.getProfilePic());
+           tempUser.get().setPassword(userDTO.getPassword());
+       }
     }
 }
