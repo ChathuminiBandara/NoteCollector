@@ -57,7 +57,7 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/note-collector-api.git
+   git clone https://github.com/ChathuminiBandara/NoteCollector.git
    ```
 
 2. Navigate to the project directory:
@@ -106,4 +106,3 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
 
-This README provides a clean overview of your project, including setup instructions and key technical details. You can adjust the links or database configuration based on your actual setup.
