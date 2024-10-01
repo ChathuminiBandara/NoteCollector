@@ -2,7 +2,7 @@
 ```markdown
 # Note Collector API
 
-This is a Note Collector API built using the **Spring Framework**. It serves as a backend system for managing notes and provides an organized structure with layers such as DTO, Controller, Service, Entity, Config, and more. The server runs on **Tomcat**.
+This is a Note Collector API built using the Spring Framework. It serves as a backend system for managing notes and provides an organized structure with layers such as DTO, Controller, Service, Entity, Config, and more. The server runs on Tomcat.
 
 ## Table of Contents
 
@@ -22,10 +22,10 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 
 ## Tech Stack
 
-- **Java**
-- **Spring Boot**
-- **Tomcat Server**
-- **MySQL** (or any preferred database)
+- Java
+- Spring Boot
+- Tomcat Server
+- MySQL (or any preferred database)
 
 ## Project Structure
 
@@ -48,9 +48,9 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 
 ### Prerequisites
 
-- **Java 17+**
-- **Maven** or **Gradle** for dependency management.
-- A database such as **MySQL**.
+- Java 17+
+- Maven or Gradle for dependency management.
+- A database such as MySQL.
 
 ### Installation
 
@@ -103,6 +103,6 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/ChathuminiBandara/NoteCollector/blob/master/Licence.txt) file for details.
+
 
