@@ -85,13 +85,13 @@ This is a Note Collector API built using the Spring Framework. It serves as a ba
 
 ## API Endpoints
 
-| Method | Endpoint            | Description              |
-|--------|---------------------|--------------------------|
-| GET    | `/api/notes`         | Retrieve all notes       |
-| POST   | `/api/notes`         | Create a new note        |
-| GET    | `/api/notes/{id}`    | Get a note by ID         |
-| PUT    | `/api/notes/{id}`    | Update a note by ID      |
-| DELETE | `/api/notes/{id}`    | Delete a note by ID      |
+| Method | Endpoint                    | Description              |
+|--------|-----------------------------|--------------------------|
+| GET    | `/api/v1/notes`             | Retrieve all notes       |
+| POST   | `/api/v1/notes`             | Create a new note        |
+| GET    | `/api/v1/notes/{noteId}`    | Get a note by ID         |
+| PUT    | `/api/v1/notes/{noteId}`    | Update a note by ID      |
+| DELETE | `/api/v1/notes/{noteId}`    | Delete a note by ID      |
 
 ## Custom Status Codes
 
@@ -104,5 +104,3 @@ This is a Note Collector API built using the Spring Framework. It serves as a ba
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/ChathuminiBandara/NoteCollector/blob/master/Licence.txt) file for details.
-
-
