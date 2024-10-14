@@ -2,7 +2,7 @@
 ```markdown
 # Note Collector API
 
-This is a Note Collector API built using the **Spring Framework**. It serves as a backend system for managing notes and provides an organized structure with layers such as DTO, Controller, Service, Entity, Config, and more. The server runs on **Tomcat**.
+This is a Note Collector API built using the Spring Framework. It serves as a backend system for managing notes and provides an organized structure with layers such as DTO, Controller, Service, Entity, Config, and more. The server runs on Tomcat.
 
 ## Table of Contents
 
@@ -22,10 +22,10 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 
 ## Tech Stack
 
-- **Java**
-- **Spring Boot**
-- **Tomcat Server**
-- **MySQL** (or any preferred database)
+- Java
+- Spring Boot
+- Tomcat Server
+- MySQL (or any preferred database)
 
 ## Project Structure
 
@@ -48,16 +48,16 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 
 ### Prerequisites
 
-- **Java 17+**
-- **Maven** or **Gradle** for dependency management.
-- A database such as **MySQL**.
+- Java 17+
+- Maven or Gradle for dependency management.
+- A database such as MySQL.
 
 ### Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/note-collector-api.git
+   git clone https://github.com/ChathuminiBandara/NoteCollector.git
    ```
 
 2. Navigate to the project directory:
@@ -85,13 +85,13 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 
 ## API Endpoints
 
-| Method | Endpoint            | Description              |
-|--------|---------------------|--------------------------|
-| GET    | `/api/notes`         | Retrieve all notes       |
-| POST   | `/api/notes`         | Create a new note        |
-| GET    | `/api/notes/{id}`    | Get a note by ID         |
-| PUT    | `/api/notes/{id}`    | Update a note by ID      |
-| DELETE | `/api/notes/{id}`    | Delete a note by ID      |
+| Method | Endpoint                    | Description              |
+|--------|-----------------------------|--------------------------|
+| GET    | `/api/v1/notes`             | Retrieve all notes       |
+| POST   | `/api/v1/notes`             | Create a new note        |
+| GET    | `/api/v1/notes/{noteId}`    | Get a note by ID         |
+| PUT    | `/api/v1/notes/{noteId}`    | Update a note by ID      |
+| DELETE | `/api/v1/notes/{noteId}`    | Delete a note by ID      |
 
 ## Custom Status Codes
 
@@ -103,7 +103,4 @@ This is a Note Collector API built using the **Spring Framework**. It serves as 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-This README provides a clean overview of your project, including setup instructions and key technical details. You can adjust the links or database configuration based on your actual setup.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/ChathuminiBandara/NoteCollector/blob/master/Licence.txt) file for details.
