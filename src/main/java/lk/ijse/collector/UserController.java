@@ -29,7 +29,6 @@ public class UserController {
 
     // new mime type - multipart_form_data   :  older type - json
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-
     public ResponseEntity<Void> saveUser(
             @RequestPart ("firstname") String firstName,
             @RequestPart ("lastname") String lastName,
